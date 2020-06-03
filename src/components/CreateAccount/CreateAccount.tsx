@@ -85,7 +85,7 @@ const CreateAccount: FC<Props> = (props) => {
               label=""
             >
               <MenuItem selected disabled value="null">
-                I would Prefer to describe my user type as
+                I would describe my user type as
               </MenuItem>
               <MenuItem value={10}>Developer</MenuItem>
             </Select>
@@ -116,7 +116,7 @@ const CreateAccount: FC<Props> = (props) => {
             disableElevation
             disabled={!name || !email || !userType || password.length < 8}
             variant="contained"
-            style={{ width: '100%', height: 56 }}
+            style={{ width: '100%', height: 56, textTransform: 'none' }}
           >
             {loading ? <CircularProgress size={24} color="inherit"/> : 'Next'}
           </Button>

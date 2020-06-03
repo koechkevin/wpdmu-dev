@@ -1,5 +1,7 @@
 ### WPDMU DEV TEST
 
+https://wpdmu-dev.azurewebsites.net/
+
 #### Development
 
 ```shell script
