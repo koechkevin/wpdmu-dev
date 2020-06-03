@@ -28,10 +28,10 @@ const CreateAccount: FC<Props> = (props) => {
   return (
     <div style={{ minWidth: '50%', paddingTop: 16 }}>
       <div>
-        <Typography variant="h4" style={{ marginBottom: 32, fontWeight: 'bold' }}>
+        <Typography variant="h4" style={{ marginBottom: 40, fontWeight: 'bold', lineHeight: '38px' }}>
           Let's set up your account
         </Typography>
-        <Typography style={{ marginBottom: 32 }}>
+        <Typography style={{ marginBottom: 40 }}>
           Already have an account?{' '}
           <Link className={styles.link} to="">
             Sign in
@@ -43,7 +43,7 @@ const CreateAccount: FC<Props> = (props) => {
           e.preventDefault();
           onSubmit(values);
         }}
-        style={{ marginBottom: 32 }}
+        style={{ marginBottom: 40 }}
       >
         <div className={classes.wrapper}>
           <fieldset style={{ border: 'none', padding: 0 }}>
@@ -66,7 +66,7 @@ const CreateAccount: FC<Props> = (props) => {
             />
             {!isEmailValid && (
               <label htmlFor="set-up-email">
-                <Typography color="error" style={{ marginTop: 8 }}>
+                <Typography color="error" style={{ marginTop: 10 }}>
                   Enter a valid email address
                 </Typography>
               </label>
@@ -80,7 +80,7 @@ const CreateAccount: FC<Props> = (props) => {
               required
               name="userType"
               value={userType}
-              style={{ marginBottom: 16, height: 56 }}
+              style={{ marginBottom: 16, height: 50 }}
               defaultValue="null"
               label=""
             >
@@ -116,7 +116,7 @@ const CreateAccount: FC<Props> = (props) => {
             disableElevation
             disabled={!name || !email || !userType || password.length < 8}
             variant="contained"
-            style={{ width: '100%', height: 56, textTransform: 'none' }}
+            style={{ width: '100%', height: 50, textTransform: 'none' }}
           >
             {loading ? <CircularProgress size={24} color="inherit"/> : 'Next'}
           </Button>

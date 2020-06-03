@@ -4,6 +4,7 @@ export default makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
+      height: 50,
     },
   }),
 );

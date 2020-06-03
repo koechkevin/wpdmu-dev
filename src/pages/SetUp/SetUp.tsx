@@ -40,19 +40,19 @@ const SetUp: FC<Props> = (props) => {
     return parseInt(current, 10);
   });
 
-  const [direction, setDirection] = useState<'left' | 'right' | 'down'>('left');
   const previousStep = usePrevious(currentStep);
 
   useEffect(() => {
-    setDirection((previousStep || 1) < currentStep ? 'right' : 'left');
     window.location.hash = `${currentStep}`;
-  }, [currentStep, previousStep]);
+  }, [currentStep]);
 
   const { loading } = useSelector((state: Store) => ({
     loading: state.accountSetUp.submitting,
   }));
 
   const dispatch = useDispatch();
+
+  const direction = (previousStep || 1) < currentStep ? 'left' : 'right';
 
   return (
     <Paper elevation={0} className={classes.signup}>
