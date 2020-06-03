@@ -46,7 +46,7 @@ const SetUp: FC<Props> = (props) => {
   useEffect(() => {
     setDirection((previousStep || 1) < currentStep ? 'right' : 'left');
     window.location.hash = `${currentStep}`;
-  }, [currentStep]);
+  }, [currentStep, previousStep]);
 
   const { loading } = useSelector((state: Store) => ({
     loading: state.accountSetUp.submitting,

@@ -1,4 +1,4 @@
-### WPDMU DEV TEST
+### WPMU DEV TEST
 
 https://wpdmu-dev.azurewebsites.net/
 
