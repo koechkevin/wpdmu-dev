@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from 'react';
+import Routes from './Routes/Routes';
+import {CircularProgress, ThemeProvider} from '@material-ui/core';
+import theme from './theme';
+import { Provider } from 'react-redux';
+import { store } from './redux';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Suspense fallback={<CircularProgress style={{ position: 'absolute', left: '48%', top: '48%'}} color="primary"/> }>
+          <Routes />
+        </Suspense>
+      </Provider>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

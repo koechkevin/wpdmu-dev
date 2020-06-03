@@ -1,44 +1,94 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### WPDMU DEV TEST
 
-## Available Scripts
+#### Development
 
-In the project directory, you can run:
+```shell script
+yarn start:dev
+```
 
-### `yarn start`
+#### Production
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```shell script
+yarn build && yarn start
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Set Up with Create React App Typescript template
 
-### `yarn test`
+- Fast to set up
+- Dynamic import syntax already configured with webpack.
+- Dynamic imports help introduce code splitting into the app.
+- Code splitting helps "lazy load" just what is needed by the user. Improves performance.
+- You only have to use `React.lazy`.
+  e.g
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```typescript jsx
+import React from 'react';
+const Exception = React.lazy(() => import('./src/Exception/Exception'));
 
-### `yarn build`
+const App: React.FC<Props> = () => {
+  return <Exception {...props} exception={403} text="You are not authorized to access this page" />;
+};
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Lazy loading implemented at route level
+- Scalable routes config
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+  - Supposing access level authentication is required in future of this SPA?
+  - Routes Component super configurable with interface like
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```typescript
+export interface RoutesConfig {
+  name?: string;
+  path: string;
+  allowedRoles?: string[];
+  authenticated: boolean;
+  component: any;
+}
+```
 
-### `yarn eject`
+- Exception Component is super configurable as well accepts status code and custom Text and displays error message.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### 404 Page
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![](https://res.cloudinary.com/koech/image/upload/v1591199327/Screenshot_2020-06-03_at_18.46.57.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- For any UnAuthorized visit, Redirect to 403 instead
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### 403 Page
 
-## Learn More
+![](https://res.cloudinary.com/koech/image/upload/v1591199714/Screenshot_2020-06-03_at_18.54.30.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Static page can be served with Express or any other Server
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+React-Redux Setup initialized with version `^7.2.0`
+
+- No need of connect HOC. `useSelector()` and `useDispatch()` hooks preferred.
+- Example inside component
+
+```typescript jsx
+const { loading } = useSelector((state: Store) => ({
+  loading: state.accountSetUp.submitting,
+}));
+```
+
+- Redux related stuff reside inside redux folder.
+
+Components are super configurable.
+
+- They can be used anywhere.
+- All components reside inside Components folder.
+- Props make them super configurable.
+
+Pages are Route components that are not exceptions.
+
+- Made up of components
+- Makes it easy to debug
+- Best place to access redux state with `useSelector()`
+
+The design mock ups don't cover the mobile view but I have covered in this implementation.
+
+![](https://res.cloudinary.com/koech/image/upload/v1591200518/Screenshot_2020-06-03_at_19.08.26.png)
+
+#### TODO
+
+- Set Up unit tests with Jest and Enzyme or react testing library.

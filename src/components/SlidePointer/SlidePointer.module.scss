@@ -1,0 +1,12 @@
+.pointer {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  z-index: 1;
+  div:nth-child(n) {
+    width: 4px;
+    height: 4px;
+    margin-left: 8px;
+    border-radius: 50%;
+  }
+}
