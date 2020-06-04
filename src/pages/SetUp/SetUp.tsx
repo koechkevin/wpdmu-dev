@@ -36,7 +36,7 @@ const SetUp: FC<Props> = (props) => {
   } = props;
   const [currentStep, setCurrentStep] = useState<number>(() => {
     const currentHash = hash.split('#');
-    const current = currentHash[currentHash.length - 1] || '1';
+    const current = currentHash[currentHash.length - 1] || '0';
     return parseInt(current, 10);
   });
 
@@ -52,7 +52,7 @@ const SetUp: FC<Props> = (props) => {
 
   const dispatch = useDispatch();
 
-  const direction = (previousStep || 1) < currentStep ? 'left' : 'right';
+  const direction = !previousStep ? 'down':(previousStep || 1) < currentStep ? 'left' : 'right';
 
   return (
     <Paper elevation={0} className={classes.signup}>
